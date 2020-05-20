@@ -40,7 +40,7 @@ namespace cw11.Migrations
 
                     b.HasKey("IdDoctor");
 
-                    b.ToTable("Doctor");
+                    b.ToTable("Doctors");
                 });
 
             modelBuilder.Entity("cw11.Models.Medicament", b =>
@@ -118,17 +118,54 @@ namespace cw11.Migrations
                     b.ToTable("Prescriptions");
                 });
 
+            modelBuilder.Entity("cw11.Models.Prescription_Medicament", b =>
+                {
+                    b.Property<int>("IdMedicament")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdPrescription")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("Dose")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdMedicament", "IdPrescription");
+
+                    b.HasIndex("IdPrescription");
+
+                    b.ToTable("Prescription_Medicaments");
+                });
+
             modelBuilder.Entity("cw11.Models.Prescription", b =>
                 {
                     b.HasOne("cw11.Models.Doctor", "Doctor")
-                        .WithMany("Presciptions")
+                        .WithMany()
                         .HasForeignKey("IdDoctor")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("cw11.Models.Patient", "Patient")
-                        .WithMany("Presciptions")
+                        .WithMany()
                         .HasForeignKey("IdPatient")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("cw11.Models.Prescription_Medicament", b =>
+                {
+                    b.HasOne("cw11.Models.Medicament", "Medicament")
+                        .WithMany()
+                        .HasForeignKey("IdMedicament")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("cw11.Models.Prescription", "Prescription")
+                        .WithMany()
+                        .HasForeignKey("IdPrescription")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

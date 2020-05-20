@@ -5,8 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200520160536_AddedPrescriptionsTable.cs" />
-    <Compile Remove="Migrations\20200520160536_AddedPrescriptionsTable.Designer.cs" />
+    <Compile Remove="Migrations\20200520171627_AddedMedicamentsTable.cs" />
+    <Compile Remove="Migrations\20200520171627_AddedMedicamentsTable.Designer.cs" />
+    <Compile Remove="Migrations\20200520171856_AddedAllTables.cs" />
+    <Compile Remove="Migrations\20200520171856_AddedAllTables.Designer.cs" />
+    <Compile Remove="Migrations\20200520172555_AddedAllTables.cs" />
+    <Compile Remove="Migrations\20200520172555_AddedAllTables.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
